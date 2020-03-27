@@ -72,5 +72,10 @@ io.on("connection", socket => {
     }
   })
 })
+
+app.get("/fine", (req, res) => {
+  res.send("i am fine")
+})
+
 const PORT = process.env.PORT || 3000
 server.listen(PORT, () => console.log(`Port is running on ${PORT}`))
