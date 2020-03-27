@@ -2,6 +2,12 @@ const users = []
 
 // add all users to the room
 function userJoin(id, username, room) {
+  const existingUser = users.find(user => user.username === username)
+
+  // if (existingUser) {
+  //    return { error: "User already exist , please choose a different name" }
+  //  }
+
   const user = { id, username, room }
 
   users.push(user)

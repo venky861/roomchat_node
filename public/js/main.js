@@ -26,7 +26,6 @@ socket.on("message", data => {
 
 chatForm.addEventListener("submit", e => {
   e.preventDefault()
-
   const msg = e.target.elements.msg.value
 
   console.log(msg)

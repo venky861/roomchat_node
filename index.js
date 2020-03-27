@@ -23,8 +23,12 @@ io.on("connection", socket => {
 
   socket.on("joinRoom", ({ username, room }) => {
     const user = userJoin(socket.id, username, room)
+    /*
+    if (user.error) {
+      console.log(user)
+      socket.emit("errorr", user)
+    }  */
 
-    console.log(user.room, user.username)
     socket.join(user.room)
 
     //welcome message
@@ -47,16 +51,14 @@ io.on("connection", socket => {
   })
 
   socket.on("chatMessage", data => {
-    console.log("data", data)
     const user = currentUser(socket.id)
-    console.log("user", user)
-    console.log(user.room)
+
     io.to(user.room).emit("message", formatmessages(user.username, data))
   })
 
   socket.on("disconnect", () => {
     const user = userleft(socket.id)
-    console.log(user, "user")
+
     if (user) {
       io.to(user.room).emit(
         "message",
